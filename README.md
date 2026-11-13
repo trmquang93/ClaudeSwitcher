@@ -3,8 +3,10 @@
 A tiny macOS menu-bar app to switch between multiple Claude desktop profiles (separate accounts), each with its own `--user-data-dir` and `CLAUDE_CONFIG_DIR`.
 
 <p align="center">
-  <img src="docs/menu.png" alt="Menu-bar menu listing Claude profiles" width="320">
-  <img src="docs/add-account.png" alt="Add Claude account dialog" width="300">
+  <img src="docs/showcase-hero.png" alt="Claude Switcher menu-bar menu listing Claude profiles" width="100%">
+</p>
+<p align="center">
+  <img src="docs/showcase-how-it-works.png" alt="Each profile has its own data folder and Claude Code config" width="100%">
 </p>
 
 ## Install

@@ -4,7 +4,7 @@ cd "$(dirname "$0")"
 APP="$HOME/Applications/Claude Switcher.app"
 rm -rf "$APP"; mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 swiftc -O -o "$APP/Contents/MacOS/ClaudeSwitcher" main.swift
-cp /Applications/Claude.app/Contents/Resources/electron.icns "$APP/Contents/Resources/icon.icns" 2>/dev/null || true
+cp assets/icon.icns "$APP/Contents/Resources/icon.icns"
 cat > "$APP/Contents/Info.plist" <<P
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
