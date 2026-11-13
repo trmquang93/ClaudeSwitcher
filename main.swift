@@ -1,4 +1,5 @@
 import Cocoa
+import ServiceManagement
 
 struct Profile: Codable {
     var title: String
@@ -216,6 +217,8 @@ final class Controller: NSObject, NSApplicationDelegate {
         }
         views.append(NSBox.separatorLine())
         views.append(OptionRow(title: "+  Add Account…", enabled: true) { [weak self] in self?.closePanel(); DispatchQueue.main.async { self?.addAccount() } })
+        let loginOn = SMAppService.mainApp.status == .enabled
+        views.append(OptionRow(title: (loginOn ? "✓  " : "     ") + "Launch at Login", enabled: true) { [weak self] in self?.closePanel(); self?.toggleLaunchAtLogin() })
         views.append(NSBox.separatorLine())
         views.append(OptionRow(title: "Quit Claude Switcher", enabled: true) { NSApp.terminate(nil) })
 
@@ -246,6 +249,16 @@ final class Controller: NSObject, NSApplicationDelegate {
         }
         monitors.append(NSEvent.addGlobalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) { outside($0) }!)
         monitors.append(NSEvent.addLocalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) { e in outside(e); return e }!)
+    }
+
+    func toggleLaunchAtLogin() {
+        do {
+            if SMAppService.mainApp.status == .enabled { try SMAppService.mainApp.unregister() }
+            else { try SMAppService.mainApp.register() }
+        } catch {
+            NSApp.activate(ignoringOtherApps: true)
+            let a = NSAlert(); a.messageText = "Couldn’t change Launch at Login"; a.informativeText = error.localizedDescription; a.runModal()
+        }
     }
 
     func open(_ i: Int) { openProfile(profiles[i]) }
