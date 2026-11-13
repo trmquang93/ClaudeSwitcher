@@ -79,6 +79,17 @@ def hero():
     base.convert("RGB").save("docs/showcase-hero.png")
 
 
+def add_account():
+    base = wallpaper()
+    menubar(base)
+    dlg = Image.open("docs/add-account.png").convert("RGBA")
+    dlg = dlg.resize((int(dlg.width * 1.75), int(dlg.height * 1.75)), Image.LANCZOS)
+    base.alpha_composite(dlg, (W - dlg.width - 260, (H - dlg.height) // 2 + 30))
+    text_block(base, 140, 520, "Add an account\nin seconds",
+               "Name it, sign in once,\nand it stays signed in.\nNo logging out. No juggling.")
+    base.convert("RGB").save("docs/showcase-add-account.png")
+
+
 def card(d, base, x, y, w, h, title, dot, rows):
     sh = Image.new("RGBA", base.size, (0, 0, 0, 0))
     ImageDraw.Draw(sh).rounded_rectangle([x, y + 20, x + w, y + h + 20], 44, fill=(0, 0, 0, 140))
@@ -120,5 +131,6 @@ def how_it_works():
 
 
 hero()
+add_account()
 how_it_works()
 print("ok")

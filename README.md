@@ -6,6 +6,9 @@ A tiny macOS menu-bar app to switch between multiple Claude desktop profiles (se
   <img src="docs/showcase-hero.png" alt="Claude Switcher menu-bar menu listing Claude profiles" width="100%">
 </p>
 <p align="center">
+  <img src="docs/showcase-add-account.png" alt="Add a Claude account dialog" width="100%">
+</p>
+<p align="center">
   <img src="docs/showcase-how-it-works.png" alt="Each profile has its own data folder and Claude Code config" width="100%">
 </p>
 
